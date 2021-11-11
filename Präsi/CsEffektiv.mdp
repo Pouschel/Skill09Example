@@ -1,0 +1,269 @@
+# Effektives C#
+## für Skill-Aufsteiger
+
+### Inhalt
+* Tipps
+* Wpf- Beispiel-App
+
+:sec 
+
+## Tipps (unsortiert)
+
+
+```cs
+   public enum Gender
+    {
+        Male = 0,
+        Female = 1
+    }
+```
+
+> Zahlen sind überflüssig 
+
+> Mach (fast) alles `public`
+
+
+```cs
+public byte[] Password;
+```
+
+> Schlechte Wahl, weil kompliziert zu verarbeiten, umwandeln: `Convert.ToBase64String()`
+
+:sec
+
+
+```cs
+private void ContinueButton_Click(object sender, RoutedEventArgs e)
+{
+  if (UsernameField.Text == "data-admin")   {
+      User = new User(...);
+      Close();
+  } else if (UsernameField.Text == "teacher-01")   {
+      User = new User(...1);
+      Close();
+  }
+... 
+}
+```
+
+```cs
+private void BetterContinueButton_Click(object sender, RoutedEventArgs e)
+{
+  try   {
+    if (UsernameField.Text == "data-admin" )  {
+      User = new User(...);         return;
+    }
+    if (UsernameField.Text == "teacher-01" )  {
+      User = new User(...);         return;
+    }
+    //...
+  }     finally   {     Close();   }
+}
+```
+:sec
+
+
+```cs
+    Database = new DatabaseConnector();
+
+    var loginWindow = new LoginWindow(Database);
+
+    loginWindow.ShowDialog();
+
+    InitializeComponent();
+```
+
+> Weniger "Luft" zwischen den Zeilen = mehr auf dem Bildschirm
+
+:sec
+
+
+```cs
+public static byte[] Hash(string s)
+{
+    if (string.IsNullOrWhiteSpace(s))
+    {
+        return null;
+    }
+
+    using (SHA256Managed sha = new SHA256Managed())
+    {
+        return sha.ComputeHash(Encoding.UTF8.GetBytes(s));
+    }
+}
+```
+
+> Eine `NullReferenceException` wartet auf die Jury!
+
+
+```cs
+  return new byte[0];
+```
+
+:sec
+
+```cs
+public static void openConnection() { CONNECTION.Open(); }
+```
+
+> Auch wenn das Wettbewerbs C# prähistorisch ist, => funktioniert, also nutze es!
+
+
+```cs
+public static void betterOpenConnection() =>  CONNECTION.Open(); 
+```
+
+> Zu viele Großbuchstabe führen zu Verkrampfungen im kleinen Finger!
+
+:sec
+
+
+```cs
+List<Dictionary<string, string>> userList = ParseCSV(openFileDialog.FileName);
+DataTable dataTable = new DataTable();
+foreach(string sKey in keyList)
+{
+    dataTable.Columns.Add(sKey);
+} 
+```
+> `var` ist dein Freund!
+
+
+```cs
+var userList = ParseCSV(openFileDialog.FileName);
+var dataTable = new DataTable();
+foreach(var sKey in keyList)
+{
+    dataTable.Columns.Add(sKey);
+}
+```
+:sec 
+
+
+```cs
+public static bool validateUser(string username, string password)
+{
+    if (checkForDefaultAccount(username))  {
+        if (checkDefaultLogin(username, password)) return true;
+        else throw new Exception("Could not sign in with the given default password. Please check the password and try again!");
+    }
+    ...
+    return false;
+}
+private void btnLogin_Click(object sender, EventArgs e)
+{
+    try   {
+        if (Reader.User.validateUser(username.Text.Trim(), password.Text.Trim())) {
+            CURRENTUSER = Username; DialogResult = DialogResult.OK;
+        } else  {
+            MessageBox.Show("Viel Text!");
+            passwordRepeat.Enabled = true;
+        }
+    }
+    catch(Exception ex)   {    MessageBox.Show(ex.Message);    }
+}
+
+```
+:sec
+
+* bool-Funktion und Exception -> Overkill
+
+* Jede Exception, die du wirfst, musst du fangen, sonst landet sie bei der Jury 
+  * **Punktabzug!**
+
+> Also wirf keine, und kümmere dich nur um die, die das System wirft!
+
+
+```cs
+public static (bool ok, string msg) betterValidateUser(string username, string password)
+{
+  if (username == "Puschel") return (true, "Alles OK");
+  if (username == "Merle") return (false, "Zu dick");
+  return (false, "Unbekannte Katze");
+}
+```
+:sec
+
+
+```cs
+private static List<string> ReadCSV(string path)
+{
+    List<string> resList = new List<string>();
+    if (File.Exists(path)) {
+        foreach (string s in File.ReadAllLines(path))
+        {
+            resList.Add(s);
+        }
+    }
+    return resList;
+}    
+```
+
+> Mach's dir einfacher und dreh die Logik um!
+
+
+```cs
+private static List<string> BetterReadCSV(string path)
+{
+  var resList = new List<string>();
+  if (!File.Exists(path)) return resList;
+  foreach (string s in File.ReadAllLines(path)) {
+    resList.Add(s);
+  }
+  return resList;
+}
+```
+:sec
+
+
+```cs
+private void gotoAssessments_Click(object sender, EventArgs e)
+{
+    showComingSoon();
+}
+private void showComingSoon()
+{
+    MessageBox.Show("Coming Soon! Stay tuned to get the latest updates");
+}
+```
+
+> Gute Idee!
+
+* Schlecht wäre: Jury klickt auf Button und nix passiert!
+
+
+```cs
+        public static string encryptPassword(string pswd)
+        {
+            return FormsAuthentication.HashPasswordForStoringInConfigFile(pswd, "MD5");
+        }
+```
+
+> MD5 ist tot, aber (wahrscheinlich) sieht niemand in euren Code
+
+:sec
+
+
+> Benutze statt eines **Küchenmessers**:
+
+```cs
+private bool IsNotEmpty(string[] strings)
+{
+    foreach (string s in strings)
+    {
+        if (string.IsNullOrEmpty(s))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+```
+
+> das **LINQ-Lichtschwert**:
+
+
+```cs
+private bool BetterIsNotEmpty(string[] strings) 
+  => !strings.Any(s => string.IsNullOrEmpty(s));
+```
