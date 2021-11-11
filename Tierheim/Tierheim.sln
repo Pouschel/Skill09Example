@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tierheim", "Tierheim.csproj", "{A7E90F53-9997-4DD4-951C-DF01820E6636}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7E90F53-9997-4DD4-951C-DF01820E6636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7E90F53-9997-4DD4-951C-DF01820E6636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7E90F53-9997-4DD4-951C-DF01820E6636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7E90F53-9997-4DD4-951C-DF01820E6636}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B78BC80C-4E1D-4225-AEF2-C6AE2DEEFC00}
+	EndGlobalSection
+EndGlobal
