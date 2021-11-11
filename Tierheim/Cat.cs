@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Tierheim
 {
-	class Cat
+	public class Cat
 	{
+		public string Name { get; set; } = "";
+		public int Age { get; set; }
+		public string Race { get; set; } = "";
+
+		public Cat()
+		{
+		}
+
 	}
 }

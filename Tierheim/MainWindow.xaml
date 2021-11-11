@@ -6,7 +6,39 @@
         xmlns:local="clr-namespace:Tierheim"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+	<Window.Resources>
+		<Style TargetType="Button" x:Key="kahuBtn">
+			<Setter Property="Margin" Value="22"></Setter>
+			<Setter Property="FontSize"	Value="55"></Setter>
+		</Style>
+	</Window.Resources>
+	<Window.CommandBindings>
+		<CommandBinding Command="{x:Static local:Globals.CatDogSelectCmd}"
+										Executed="CommandBinding_Executed"></CommandBinding>
+	</Window.CommandBindings>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"></RowDefinition>
+			<RowDefinition></RowDefinition>
+		</Grid.RowDefinitions>
+		<local:HeaderCtl PageTitle="Startseite"></local:HeaderCtl>
+		<Grid Grid.Row="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"></RowDefinition>
+				<RowDefinition></RowDefinition>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition></ColumnDefinition>
+				<ColumnDefinition></ColumnDefinition>
+			</Grid.ColumnDefinitions>
+			<TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Margin="10"
+								 FontSize="22">Ich interessiere mich für</TextBlock>
+			<Button Grid.Row="1" Style="{StaticResource kahuBtn}"
+							Command="{x:Static local:Globals.CatDogSelectCmd}" CommandParameter="Katzen"
+							>Katzen</Button>
+			<Button Grid.Row="1" Grid.Column="1" Style="{StaticResource kahuBtn}"
+							Command="{x:Static local:Globals.CatDogSelectCmd}" CommandParameter="Hunde"
+							>Hunde</Button>
+		</Grid>
+	</Grid>
 </Window>

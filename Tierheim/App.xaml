@@ -3,7 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Tierheim"
              StartupUri="MainWindow.xaml">
-    <Application.Resources>
-         
-    </Application.Resources>
+  <Application.Resources>
+		<Color x:Key="backCol">#ed8b00</Color>
+		<Color x:Key="foreCol">#0000dd</Color>
+		<SolidColorBrush x:Key="backBrush" Color="{StaticResource backCol}"></SolidColorBrush>
+		<SolidColorBrush x:Key="foreBrush" Color="{StaticResource foreCol}"></SolidColorBrush>	
+			
+			
+	</Application.Resources>
 </Application>

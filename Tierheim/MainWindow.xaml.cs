@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Tierheim.Globals;
 
 namespace Tierheim
 {
@@ -24,9 +25,21 @@ namespace Tierheim
 		public MainWindow()
 		{
 			InitializeComponent();
+			this.Width = 800;
+			this.Height = 400;
 			if (Debugger.IsAttached)
 				this.Left = 2000;
 
+		}
+
+		private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			if ("Hunde".Equals(e.Parameter))
+			{
+				// throw new Exception("Test Exception!");
+				ShowInfo("Hunde sind leider momentan nicht vorrätig!");
+				return;
+			}
 		}
 	}
 }
