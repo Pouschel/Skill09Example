@@ -13,6 +13,8 @@
 	<Window.Resources>
 		<Style TargetType="TextBlock" x:Key="leftBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
 			<Setter Property="Margin" Value="4"></Setter>
+			<Setter Property="VerticalAlignment" Value="Center"></Setter>
+
 		</Style>
 		<Style TargetType="TextBox" x:Key="rightBox" BasedOn="{StaticResource {x:Type Control}}">
 			<Setter Property="Margin" Value="6"></Setter>
@@ -31,10 +33,12 @@
 			<ComboBox x:Name="cbCatSel" ItemsSource="{Binding Source={x:Static local:Globals.CatList}}"
 							SelectionChanged="ComboBox_SelectionChanged"  MinWidth="100"></ComboBox>
 		</StackPanel>
-		<Grid Grid.Row="2">
+		<ScrollViewer Grid.Row="2">
+		<Grid >
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="auto"></ColumnDefinition>
 				<ColumnDefinition></ColumnDefinition>
+				<ColumnDefinition Width="auto"></ColumnDefinition>
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="auto"></RowDefinition>
@@ -43,7 +47,7 @@
 				<RowDefinition Height="auto"></RowDefinition>
 			</Grid.RowDefinitions>
 			<TextBlock Style="{StaticResource leftBlock}">Name:</TextBlock>
-			<TextBlock Grid.Column="1" Text="{Binding Name}"></TextBlock>
+			<TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding Name}"></TextBlock>
 
 			<TextBlock Grid.Row="1" Style="{StaticResource leftBlock}">Alter:</TextBlock>
 			<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Age, Mode=TwoWay}" 
@@ -54,9 +58,12 @@
 							 Style="{StaticResource rightBox}"></TextBox>
 
 			<TextBlock Grid.Row="3" Style="{StaticResource leftBlock}">Kastriert:</TextBlock>
-			<CheckBox Margin="10" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1"
+			<CheckBox Margin="10,0" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1"
 								IsChecked="{Binding Castrated}"></CheckBox>
 
+			<Image Grid.Column="2" Grid.RowSpan="4" Width="400" Source="{Binding Image}"
+						 Stretch="Fill" Margin="10"></Image>
 		</Grid>
+		</ScrollViewer>
 	</Grid>
 </Window>

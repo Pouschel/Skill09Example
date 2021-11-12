@@ -267,3 +267,9 @@ private bool IsNotEmpty(string[] strings)
 private bool BetterIsNotEmpty(string[] strings) 
   => !strings.Any(s => string.IsNullOrEmpty(s));
 ```
+:sec
+
+## Das Ganze auf GitHub
+
+###  https://github.com/Pouschel/Skill09Example
+

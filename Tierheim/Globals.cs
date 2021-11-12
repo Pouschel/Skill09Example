@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Tierheim
 {
@@ -35,6 +39,13 @@ namespace Tierheim
 			};
 			list.Add(merle);
 			return list;
+		}
+
+		public static ImageSource LoadImageRelative(string relName)
+		{
+			var dir = Path.GetDirectoryName( Assembly.GetEntryAssembly().Location);
+			var fn = Path.Combine(dir, relName);
+			return new BitmapImage(new Uri(fn));
 		}
 	}
 }
