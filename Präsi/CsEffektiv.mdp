@@ -244,7 +244,7 @@ private void showComingSoon()
 :sec
 
 
-> Benutze statt eines **Küchenmessers**:
+> Benutze statt eines stumpfen **Küchenmessers**:
 
 ```cs
 private bool IsNotEmpty(string[] strings)
@@ -260,7 +260,7 @@ private bool IsNotEmpty(string[] strings)
 }
 ```
 
-> das **LINQ-Lichtschwert**:
+> das scharfe **LINQ-Lichtschwert**:
 
 
 ```cs

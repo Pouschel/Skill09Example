@@ -29,7 +29,12 @@ namespace Tierheim
 			this.Height = 400;
 			if (Debugger.IsAttached)
 				this.Left = 2000;
+			this.Loaded += this.MainWindow_Loaded;
+		}
 
+		private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+		{
+			if (Debugger.IsAttached) CatDogSelectCmd.Execute("Katzen", this);
 		}
 
 		private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -40,6 +45,8 @@ namespace Tierheim
 				ShowInfo("Hunde sind leider momentan nicht vorrätig!");
 				return;
 			}
+			var kw = new Katzenwahl() { Owner = this };
+			kw.ShowDialog();
 		}
 	}
 }

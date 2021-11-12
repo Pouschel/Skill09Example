@@ -7,8 +7,28 @@
 		<Color x:Key="backCol">#ed8b00</Color>
 		<Color x:Key="foreCol">#0000dd</Color>
 		<SolidColorBrush x:Key="backBrush" Color="{StaticResource backCol}"></SolidColorBrush>
-		<SolidColorBrush x:Key="foreBrush" Color="{StaticResource foreCol}"></SolidColorBrush>	
-			
-			
+		<SolidColorBrush x:Key="foreBrush" Color="{StaticResource foreCol}"></SolidColorBrush>
+
+		<!--<FontFamily x:Key="DefFont">Segoe UI</FontFamily>-->
+		<FontFamily x:Key="DefFont">Segoe Script</FontFamily>
+		
+		<Style TargetType="Control"	>
+			<Setter Property="FontFamily" Value="{StaticResource DefFont}"></Setter>
+			<Setter Property="FontSize"	Value="20"></Setter>
+		</Style>
+		<Style TargetType="TextBlock">
+			<Setter Property="FontFamily" Value="{StaticResource DefFont}"></Setter>
+			<Setter Property="FontSize"	Value="20"></Setter>
+		</Style>
+		<Style TargetType="Button" BasedOn="{StaticResource {x:Type Control}}">
+			<Setter Property="Background" Value="{StaticResource backBrush}"></Setter>
+		</Style>
+
+		<Style TargetType="Button" x:Key="kahuBtn" >
+			<Setter Property="Background" Value="{StaticResource backBrush}"></Setter>
+			<Setter Property="Margin" Value="22"></Setter>
+			<Setter Property="FontSize"	Value="55"></Setter>
+		</Style>
+		
 	</Application.Resources>
 </Application>
